@@ -1,60 +1,66 @@
 # {{cookiecutter.project_name}}
 
-<a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
-    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
-</a>
 
 {{cookiecutter.description}}
 
 ## Project Organization
 
 ```
-├── LICENSE            <- Open-source license if one is chosen
-├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
 ├── README.md          <- The top-level README for developers using this project.
+├── pyproject.toml     <- python environment setup
+├── .env               <- environment variables - ignore in git but required locally
+├── .env.sample        <- sample files include instructions for setting up local .env
+├── dvc.yaml           <- stages setup for dvc pipeline management
+├── params.yaml        <- parameters for dvc pipeline
+│
 ├── data
 │   ├── external       <- Data from third party sources.
 │   ├── interim        <- Intermediate data that has been transformed.
 │   ├── processed      <- The final, canonical data sets for modeling.
 │   └── raw            <- The original, immutable data dump.
 │
-├── docs               <- A default mkdocs project; see www.mkdocs.org for details
+├── docs               <- A default mkdocs project; see www.mkdocs.org for details. 
+│                         Documentation for code / repos, Documentation for experiments / runs
 │
 ├── models             <- Trained and serialized models, model predictions, or model summaries
 │
 ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
+│                         date, and a short `-` delimited description, e.g.
+│                         `1.0-20240101-initial-data-exploration`.
 │
 ├── pyproject.toml     <- Project configuration file with package metadata for 
 │                         {{ cookiecutter.module_name }} and configuration for tools like black
 │
 ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
 │
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.cfg          <- Configuration file for flake8
-│
-└── {{ cookiecutter.module_name }}   <- Source code for use in this project.
+└── src                <- Source code for use in this project.
     │
     ├── __init__.py             <- Makes {{ cookiecutter.module_name }} a Python module
     │
     ├── config.py               <- Store useful variables and configuration
     │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    ├── modeling                
+    ├── data                    <- Scripts to download or generate data      
     │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
+    │   └── dataset.py        
+    │
+    ├── eval                    <- Code to evaluate the models
+    │   ├── __init__.py 
+    │   ├── metrics.py          <- Code to calculate evaluation metrics          
+    │   └── backtest.py         <- Backtest module
+    │
+    ├── features                <- Code to create features for modeling      
+    │   ├── __init__.py 
+    │   └── features.py        
+    │
+    ├── report                  <- Code for generating reports
+    │   ├── __init__.py 
+    │   └── plots.py            <- Code to create visualizations
+    │
+    ├── train                
+    │   ├── __init__.py 
     │   └── train.py            <- Code to train models
     │
-    └── plots.py                <- Code to create visualizations
+    └── predict.py              <- Code to run model inference with trained models          
 ```
 
 --------

@@ -27,8 +27,10 @@ packages_to_install += ["awscli"]
 packages_to_install += scaffold
 # {% endif %}
 
+basic_package = []
 # {% if cookiecutter.pydata_packages == "basic" %}
-packages_to_install += basic
+# packages_to_install += basic
+basic_package = basic
 # {% endif %}
 
 # {% if cookiecutter.linting_and_formatting == "ruff" %}
@@ -66,10 +68,12 @@ for docs_template in docs_path.iterdir():
 write_dependencies(
     "{{ cookiecutter.dependency_file }}",
     packages_to_install,
+    basic_package,
     pip_only_packages,
     repo_name="{{ cookiecutter.repo_name }}",
     module_name="{{ cookiecutter.module_name }}",
     python_version="{{ cookiecutter.python_version_number }}",
+    environment_manager="{{ cookiecutter.environment_manager }}",
 )
 
 write_custom_config("{{ cookiecutter.custom_config }}")

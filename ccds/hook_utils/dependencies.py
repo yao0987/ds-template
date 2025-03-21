@@ -31,8 +31,10 @@ scaffold = [
 
 
 def write_dependencies(
-    dependencies, packages, pip_only_packages, repo_name, module_name, python_version
+    dependencies, dev_packages, basic_package, pip_only_packages, repo_name, module_name, python_version, environment_manager
 ):
+    packages = dev_packages + basic_package
+
     if dependencies == "requirements.txt":
         with open(dependencies, "w") as f:
             lines = sorted(packages)
@@ -45,8 +47,19 @@ def write_dependencies(
     elif dependencies == "pyproject.toml":
         with open(dependencies, "r") as f:
             doc = tomlkit.parse(f.read())
-        doc["project"].add("dependencies", sorted(packages))
-        doc["project"]["dependencies"].multiline(True)
+
+        if environment_manager == "poetry":                       
+            # Add packages to dependencies
+            for package in sorted(basic_package):
+                if package not in doc["tool"]["poetry"]["dependencies"]:
+                    doc["tool"]["poetry"]["dependencies"][package] = "*"
+            for package in sorted(dev_packages):
+                if package not in doc["tool"]["poetry"]["group"]["dev"]["dependencies"]:
+                    doc["tool"]["poetry"]["group"]["dev"]["dependencies"][package] = "*"
+
+        else:
+            doc["project"].add("dependencies", sorted(packages))
+            doc["project"]["dependencies"].multiline(True)
 
         with open(dependencies, "w") as f:
             f.write(tomlkit.dumps(doc))

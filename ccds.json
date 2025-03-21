@@ -12,6 +12,7 @@
         {"gcs": {"bucket": "bucket-name"}}
     ],
     "environment_manager": [
+        "poetry",
         "virtualenv",
         "conda",
         "pipenv",
@@ -19,20 +20,20 @@
         "none"
     ],
     "dependency_file": [
-        "requirements.txt",
         "pyproject.toml",
+        "requirements.txt",
         "environment.yml",
         "Pipfile"
     ],
     "pydata_packages": [
-        "none",
-        "basic"
+        "basic",
+        "none"
     ],
     "linting_and_formatting": [
         "ruff",
         "flake8+black+isort"
     ],
     "open_source_license": ["No license file", "MIT", "BSD-3-Clause"],
-    "docs": ["mkdocs", "none"],
+    "docs": [ "mkdocs", "none"],
     "include_code_scaffold": ["Yes", "No"]
 }
