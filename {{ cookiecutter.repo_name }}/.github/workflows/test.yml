@@ -1,3 +1,5 @@
+#{% raw %}
+
 name: Test
 
 on:
@@ -61,3 +63,4 @@ jobs:
           ./scripts/test.sh
         env:
           ENVIRONMENT: test
+#{% endraw %}
