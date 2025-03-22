@@ -177,7 +177,7 @@ def verify_files(root, config):
     assert sorted(existing_files) == sorted(set(expected_files))
 
     for f in existing_files:
-        if '.github' in f.parts:
+        if ".github" in f.parts:
             continue
         assert no_curlies(root / f)
 
