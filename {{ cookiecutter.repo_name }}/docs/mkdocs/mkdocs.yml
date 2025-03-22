@@ -4,5 +4,48 @@ site_name: {{ cookiecutter.project_name }}
 # # {% endif %}
 nav:
   - Home: index.md
-  - Experiments: models.md
-theme: readthedocs
+  - Experiments:
+    - experiments/index.md
+    - V1: experiments/v1.md
+  - Pipeline and Code:
+    - pipeline/index.md
+    - Data: pipeline/data.md
+    - Eval: pipeline/eval.md
+    - Features: pipeline/features.md
+    - Report: pipeline/report.md
+    - Train: pipeline/train.md
+    - Config: pipeline/config.md
+  - Deployment:
+    - deployment/index.md
+
+theme:
+  favicon: https://images.squarespace-cdn.com/content/v1/6568a649cbc64e1c044af6a3/c8806bab-8eb4-4bd6-8d5b-485fd29cd921/favicon.ico
+  name: material
+  palette:
+  # Palette toggle for light mode
+  - scheme: default
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  # Palette toggle for dark mode
+  - scheme: slate
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+  features:
+  # - navigation.instant
+  - navigation.tabs
+  - navigation.tabs.sticky
+  - navigation.path
+  - navigation.indexes
+  - navigation.footer
+  - toc.follow
+
+plugins:
+  - search
+
+repo_url: _to_be_changed_
+
+markdown_extensions:
+  - toc:
+      permalink: true

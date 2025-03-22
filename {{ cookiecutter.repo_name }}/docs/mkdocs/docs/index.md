@@ -21,3 +21,12 @@ The Makefile contains the central entry points for common tasks related to this 
 * `make sync_data_down` will use `gsutil rsync` to recursively sync files in `gs://{{ cookiecutter.dataset_storage.gcs.bucket }}/data/` to `data/`.
 {% endif %}
 {% endif %}
+
+Getting started
+===============
+
+This is where you describe how to get set up on a clean install, including the
+commands necessary to get the raw data (using the `sync_data_from_s3` command,
+for example), and then how to make the cleaned, final data sets.
+
+Include the experiment takeaways and documentations here as well.

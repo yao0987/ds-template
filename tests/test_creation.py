@@ -136,8 +136,7 @@ def verify_files(root, config):
         expected_files += [
             "docs/mkdocs.yml",
             "docs/README.md",
-            "docs/docs/index.md",
-            "docs/docs/getting-started.md",
+            "docs/docs/index.md"
         ]
 
     expected_files.append(config["dependency_file"])

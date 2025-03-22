@@ -48,7 +48,7 @@ def write_dependencies(
         with open(dependencies, "r") as f:
             doc = tomlkit.parse(f.read())
 
-        if environment_manager == "poetry":                       
+        if environment_manager == "poetry":
             # Add packages to dependencies
             for package in sorted(basic_package):
                 if package not in doc["tool"]["poetry"]["dependencies"]:
