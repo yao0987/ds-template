@@ -58,6 +58,8 @@ def verify_folders(root, config):
     """Tests that expected folders and only expected folders exist."""
     expected_dirs = [
         ".",
+        ".github",
+        ".github/workflows",
         "data",
         "data/external",
         "data/interim",
@@ -67,18 +69,25 @@ def verify_folders(root, config):
         "models",
         "notebooks",
         "references",
-        "reports",
-        "reports/figures",
-        config["module_name"],
+        "src",
+        "tests",
+        "tests/scripts",
     ]
 
     if config["include_code_scaffold"] == "Yes":
         expected_dirs += [
-            f"{config['module_name']}/modeling",
+            "src/data",
+            "src/eval",
+            "src/features",
+            "src/report",
+            "src/train",
         ]
 
     if config["docs"] == "mkdocs":
         expected_dirs += ["docs/docs"]
+        expected_dirs += ["docs/docs/deployment"]
+        expected_dirs += ["docs/docs/experiments"]
+        expected_dirs += ["docs/docs/pipeline"]
 
     expected_dirs = [
         #  (root / d).resolve().relative_to(root) for d in expected_dirs
@@ -96,10 +105,12 @@ def verify_folders(root, config):
 def verify_files(root, config):
     """Test that expected files and only expected files exist."""
     expected_files = [
-        "Makefile",
         "README.md",
         "pyproject.toml",
+        "dvc.yaml",
+        "params.yaml",
         ".env",
+        ".env.sample",
         ".gitignore",
         "data/external/.gitkeep",
         "data/interim/.gitkeep",
@@ -108,10 +119,8 @@ def verify_files(root, config):
         "docs/.gitkeep",
         "notebooks/.gitkeep",
         "references/.gitkeep",
-        "reports/.gitkeep",
-        "reports/figures/.gitkeep",
         "models/.gitkeep",
-        f"{config['module_name']}/__init__.py",
+        "src/__init__.py",
     ]
 
     # conditional files
@@ -123,17 +132,36 @@ def verify_files(root, config):
 
     if config["include_code_scaffold"] == "Yes":
         expected_files += [
-            f"{config['module_name']}/config.py",
-            f"{config['module_name']}/dataset.py",
-            f"{config['module_name']}/features.py",
-            f"{config['module_name']}/modeling/__init__.py",
-            f"{config['module_name']}/modeling/train.py",
-            f"{config['module_name']}/modeling/predict.py",
-            f"{config['module_name']}/plots.py",
+            "src/config.py",
+            "src/predict.py",
+            "src/data/__init__.py",
+            "src/data/dataset.py",
+            "src/eval/__init__.py",
+            "src/eval/backtest.py",
+            "src/eval/metrics.py",
+            "src/features/__init__.py",
+            "src/features/features.py",
+            "src/report/__init__.py",
+            "src/report/plots.py",
+            "src/train/__init__.py",
+            "src/train/train.py",
         ]
 
     if config["docs"] == "mkdocs":
-        expected_files += ["docs/mkdocs.yml", "docs/README.md", "docs/docs/index.md"]
+        expected_files += [
+            "docs/mkdocs.yml",
+            "docs/docs/index.md",
+            "docs/docs/deployment/index.md",
+            "docs/docs/experiments/index.md",
+            "docs/docs/experiments/v1.md",
+            "docs/docs/pipeline/index.md",
+            "docs/docs/pipeline/config.md",
+            "docs/docs/pipeline/data.md",
+            "docs/docs/pipeline/eval.md",
+            "docs/docs/pipeline/features.md",
+            "docs/docs/pipeline/report.md",
+            "docs/docs/pipeline/train.md",
+        ]
 
     expected_files.append(config["dependency_file"])
 
@@ -166,6 +194,8 @@ def verify_makefile_commands(root, config):
         harness_path = test_path / "pipenv_harness.sh"
     elif config["environment_manager"] == "uv":
         harness_path = test_path / "uv_harness.sh"
+    elif config["environment_manager"] == "poetry":
+        harness_path = test_path / "poetry_harness.sh"
     elif config["environment_manager"] == "none":
         return True
     else:
