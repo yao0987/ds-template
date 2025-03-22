@@ -30,11 +30,35 @@ if [ -z $TMPDIR ]; then
     fi
 fi
 
-# Create Poetry environment and install dependencies
-# First check if Poetry is installed
+# Check if Poetry is installed, install if not
 if ! command -v poetry &> /dev/null; then
-    echo "Poetry is not installed. Please install Poetry first."
-    exit 1
+    echo "Poetry not found. Installing Poetry..."
+
+    # Determine OS and install method
+    if [[ "$OSTYPE" == "darwin"* ]] || [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # macOS or Linux
+        curl -sSL https://install.python-poetry.org | python3 -
+
+        # Add Poetry to PATH for this session
+        export PATH="$HOME/.local/bin:$PATH"
+    elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "win32" ]]; then
+        # Windows
+        curl -sSL https://install.python-poetry.org | python -
+
+        # Add Poetry to PATH for this session (Windows)
+        export PATH="$APPDATA/Python/Scripts:$PATH"
+    else
+        echo "Unsupported operating system. Please install Poetry manually: https://python-poetry.org/docs/#installation"
+        exit 1
+    fi
+
+    # Verify installation
+    if ! command -v poetry &> /dev/null; then
+        echo "Poetry installation failed. Please install Poetry manually: https://python-poetry.org/docs/#installation"
+        exit 1
+    else
+        echo "Poetry installed successfully!"
+    fi
 fi
 
 # Initialize Poetry if pyproject.toml doesn't exist
