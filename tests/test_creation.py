@@ -133,11 +133,7 @@ def verify_files(root, config):
         ]
 
     if config["docs"] == "mkdocs":
-        expected_files += [
-            "docs/mkdocs.yml",
-            "docs/README.md",
-            "docs/docs/index.md"
-        ]
+        expected_files += ["docs/mkdocs.yml", "docs/README.md", "docs/docs/index.md"]
 
     expected_files.append(config["dependency_file"])
 

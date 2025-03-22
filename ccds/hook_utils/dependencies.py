@@ -31,7 +31,14 @@ scaffold = [
 
 
 def write_dependencies(
-    dependencies, dev_packages, basic_package, pip_only_packages, repo_name, module_name, python_version, environment_manager
+    dependencies,
+    dev_packages,
+    basic_package,
+    pip_only_packages,
+    repo_name,
+    module_name,
+    python_version,
+    environment_manager,
 ):
     packages = dev_packages + basic_package
 
