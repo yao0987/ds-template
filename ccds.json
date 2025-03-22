@@ -12,18 +12,10 @@
         {"gcs": {"bucket": "bucket-name"}}
     ],
     "environment_manager": [
-        "poetry",
-        "virtualenv",
-        "conda",
-        "pipenv",
-        "uv",
-        "none"
+        "poetry"
     ],
     "dependency_file": [
-        "pyproject.toml",
-        "requirements.txt",
-        "environment.yml",
-        "Pipfile"
+        "pyproject.toml"
     ],
     "pydata_packages": [
         "basic",
