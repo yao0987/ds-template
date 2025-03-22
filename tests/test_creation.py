@@ -112,6 +112,8 @@ def verify_files(root, config):
         ".env",
         ".env.sample",
         ".gitignore",
+        ".github/workflows/build-pages.yml",
+        ".github/workflows/test.yml",
         "data/external/.gitkeep",
         "data/interim/.gitkeep",
         "data/processed/.gitkeep",
@@ -121,6 +123,9 @@ def verify_files(root, config):
         "references/.gitkeep",
         "models/.gitkeep",
         "src/__init__.py",
+        "tests/scripts/format.sh",
+        "tests/scripts/lint.sh",
+        "tests/scripts/test.sh",
     ]
 
     # conditional files
