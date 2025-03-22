@@ -44,14 +44,14 @@ pip install cookiecutter-data-science
 ```
 After installing the `ccds` command-line program, you can start a new project by running the following command (adding the anthelion git repo url and -c master - in addition to just ccds - to ensure you are using Anthelion defined structure v.s. the default structure):
 ```bash
-ccds https://gitblabla -c master
+ccds https://gitblabla -c master  # todo: add git repo url
 ```
 Then make sure you initiate git control and dvc control for the project:
 ```bash
 git init
 dvc init
 ```
-A pyproject.toml file will be created in the project root directory - see [template structure]({{ cookiecutter.repo_name }}/README.md). You can install the required packages using the following command:
+A pyproject.toml file will be created in the project root directory - see [template structure]({{ cookiecutter.repo_name }}/README.md). You can install the required packages using the following command:   # todo: change to github url
 ```bash
 poetry install
 ```
@@ -59,7 +59,7 @@ poetry install
 ### Work on existing project
 If you are working on an existing project, you can clone the project from the git repository and navigate to the project directory. Then, you can install the required packages using the following command:
 ```bash
-git clone https://gitblabla
+git clone https://gitblabla  # todo: add git repo url
 ```
 Setup the project environment with the given pyproject.toml file:
 ```bash
@@ -130,7 +130,7 @@ Adhere to the template project structure to ensure consistency across projects.
 ## Development
 Using Git and DVC for version control and experiment tracking. The main branch should always be the best performing version, while the branches will be each experiment version.
 
-When you start a new experiment, create a new branch from the main branch (or the branch you want to base it on). After the experiment is done, merge the branch to the main branch - if it outperforms. And document the details in the /docs/experiments folder accordingly.
+When you start a new experiment, create a new branch from the main branch (or the branch you want to base it on). After the experiment is done, merge the branch to the main branch - if it outperforms. And document the details in the `/docs/experiments` folder accordingly.
 
 For modeling, feel free to start with notebooks (save them in the `notebooks` folder). Naming convention is a number (for ordering), date, and a short `-` delimited description, e.g.`1.0-20240101-initial-data-exploration.ipynb`
 
@@ -141,4 +141,4 @@ Once you have a pipeline developed in `src`, you can use `dvc` to manage, rerun,
 ## Documentation
 Document your code and experiments to ensure reproducibility and knowledge sharing. Use the [mkdocs](https://www.mkdocs.org/) tool to create documentation for code, repos, and ml experiments. Specifically, we use [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) for better UI/UX. And it will be hosted in [Github Pages](https://pages.github.com/).
 
-Detailed requirements and instructions can be found in the [docs]({{ cookiecutter.repo_name }}/docs/mkdocs/docs) folder.
+Detailed requirements and instructions can be found in the [docs]({{ cookiecutter.repo_name }}/docs/mkdocs/docs) folder. # todo: change to github url
