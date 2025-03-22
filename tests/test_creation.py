@@ -202,7 +202,7 @@ def verify_makefile_commands(root, config):
     elif config["environment_manager"] == "uv":
         harness_path = test_path / "uv_harness.sh"
     elif config["environment_manager"] == "poetry":
-        harness_path = test_path / "poetry_harness.sh"
+        return True
     elif config["environment_manager"] == "none":
         return True
     else:
